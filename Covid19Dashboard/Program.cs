@@ -1,3 +1,6 @@
+using Covid19Dashboard.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Covid19Dashboard
 {
     public class Program
@@ -7,11 +10,25 @@ namespace Covid19Dashboard
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<CovidContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Covid"));
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddCors(option =>
+            {
+                option.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+
+
 
             var app = builder.Build();
 
@@ -23,6 +40,8 @@ namespace Covid19Dashboard
             }
 
             app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 
