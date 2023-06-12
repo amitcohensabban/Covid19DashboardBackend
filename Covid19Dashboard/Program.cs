@@ -1,4 +1,5 @@
 using Covid19Dashboard.Data;
+using Covid19Dashboard.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Covid19Dashboard
@@ -16,6 +17,11 @@ namespace Covid19Dashboard
             });
 
             builder.Services.AddControllers();
+            builder.Services.AddTransient<IBedOccupancyRepository, BedOccupancyRepository>();
+            builder.Services.AddTransient<ITrafficLightsPlanRepository, TrafficLightsPlanRepository>();
+            builder.Services.AddTransient<IVerifiedPatientsRepository, VerifiedPatientsRepository>();
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

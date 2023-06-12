@@ -2,5 +2,6 @@
 {
     public interface IVerifiedPatientsRepository
     {
+        public Task SeedVerifiedPatientsData();
     }
 }

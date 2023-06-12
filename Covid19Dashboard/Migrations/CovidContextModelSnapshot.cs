@@ -24,6 +24,10 @@ namespace Covid19Dashboard.Migrations
 
             modelBuilder.Entity("Covid19Dashboard.Models.BedOccupancy", b =>
                 {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<double?>("GeneralOccupancy")
                         .HasColumnType("float");
 
@@ -33,11 +37,17 @@ namespace Covid19Dashboard.Migrations
                     b.Property<double?>("InternalMedicineOccupancy")
                         .HasColumnType("float");
 
+                    b.HasKey("Id");
+
                     b.ToTable("BedOccupancyTable");
                 });
 
             modelBuilder.Entity("Covid19Dashboard.Models.TrafficLightsPlan", b =>
                 {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int?>("ActivePatients")
                         .HasColumnType("int");
 
@@ -56,28 +66,22 @@ namespace Covid19Dashboard.Migrations
                     b.Property<double?>("RateOfChange")
                         .HasColumnType("float");
 
+                    b.HasKey("Id");
+
                     b.ToTable("TrafficLightsPlanTable");
                 });
 
             modelBuilder.Entity("Covid19Dashboard.Models.VerifiedPatients", b =>
                 {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("CountryName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("EnteringIsrael")
                         .HasColumnType("float");
-
-                    b.Property<int?>("LastMonth")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SixMonth")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ThreeMonth")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UntillNow")
-                        .HasColumnType("int");
 
                     b.Property<double?>("VerifiedByTheIncoming")
                         .HasColumnType("float");
@@ -88,8 +92,7 @@ namespace Covid19Dashboard.Migrations
                     b.Property<double?>("VerifiedForeigners")
                         .HasColumnType("float");
 
-                    b.Property<int?>("Year")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
                     b.ToTable("VerifiedPatientsTable");
                 });

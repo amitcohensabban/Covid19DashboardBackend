@@ -1,6 +1,8 @@
-﻿namespace Covid19Dashboard.Repositories
+﻿using Covid19Dashboard.Models;
+namespace Covid19Dashboard.Repositories
 {
-    public class IBedOccupancyRepository
+    public interface IBedOccupancyRepository
     {
+        Task<List<BedOccupancy>> GetAllBedOccupanciesAsync();
     }
 }
