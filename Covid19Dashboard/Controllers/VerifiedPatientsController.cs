@@ -16,11 +16,22 @@
             }
 
 
-        [HttpPost("seed-data")]
-        public async Task<IActionResult> SeedData()
+        [HttpPost("generate-data")]
+        public async Task<IActionResult> GenerateFakeData()
         {
-            await _verifiedPatientsRepository.SeedVerifiedPatientsData();
+            await _verifiedPatientsRepository.GenerateFakeVerifiedPatientsData();
             return Ok("Fake data for VerifiedPatients table has been seeded.");
         }
+        [HttpGet("")]
+        public async Task<IActionResult> GetTable()
+        {
+            var res = await _verifiedPatientsRepository.GetAllVerifiedPatients();
+            if (res?.Count > 0)
+            {
+                return Ok(res);
+            }
+            return NotFound();
+        }
+
     }
-    }
+}

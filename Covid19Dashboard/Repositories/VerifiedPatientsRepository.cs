@@ -1,5 +1,6 @@
 ﻿using Covid19Dashboard.Data;
 using Covid19Dashboard.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace Covid19Dashboard.Repositories
             _context = context;
         }
 
-        public async Task SeedVerifiedPatientsData()
+        public async Task GenerateFakeVerifiedPatientsData()
         {
             List<VerifiedPatients> fakeData = new List<VerifiedPatients>
             {
@@ -117,6 +118,11 @@ namespace Covid19Dashboard.Repositories
             }
 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<VerifiedPatients>> GetAllVerifiedPatients()
+        {
+            return await _context.VerifiedPatientsTable.ToListAsync();
         }
     }
 }

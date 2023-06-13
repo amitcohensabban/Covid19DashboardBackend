@@ -14,6 +14,13 @@ namespace Covid19Dashboard.Controllers
         {
             _bedOccupancyRepository = bedOccupancyRepository;
         }
+        [HttpPost("generate-data")]
+        public async Task<IActionResult> GenerateFakeData()
+        { 
+            await _bedOccupancyRepository.GenerateFakeBedOccupancyData();
+            return Ok("Fake data for bedOccupancy table has been seeded.");
+        
+        }
         [HttpGet("")]
         public async Task <IActionResult> GetTable()
         {

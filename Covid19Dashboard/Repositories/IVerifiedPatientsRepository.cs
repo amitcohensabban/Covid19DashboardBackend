@@ -1,7 +1,11 @@
-﻿namespace Covid19Dashboard.Repositories
+﻿using Covid19Dashboard.Models;
+
+namespace Covid19Dashboard.Repositories
 {
     public interface IVerifiedPatientsRepository
     {
-        public Task SeedVerifiedPatientsData();
+         Task GenerateFakeVerifiedPatientsData();
+        Task<List<VerifiedPatients>> GetAllVerifiedPatients();
+
     }
 }
